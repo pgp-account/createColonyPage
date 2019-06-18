@@ -1,0 +1,172 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>新建集群</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"> 
+    <link rel="stylesheet" type="text/css" href="css/create.css">
+    <link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css">
+    <link rel="icon" href="images/favicon.ico" />
+  </head>
+  <body>
+    <div class="create-background-opacity"></div>
+    <div class="create-form-container">
+      <div class="progress-with-circle">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <ul class="nav-pills">
+      <li  class="nav-li-active">
+        <div class="icon-circle" id="circle1">
+          <i class="iconfont icon-jianzhuanquan"></i>
+        </div>
+        <a>Step 1</a>
+      </li>
+      <li>
+        <div class="icon-circle" id="circle2">
+          <i class="iconfont icon-jianzhuanquan"></i>
+        </div>
+        <a>Step 2</a>
+      </li>
+      <li>
+        <div class="icon-circle" id="circle3">
+          <i class="iconfont icon-jianzhuanquan"></i>
+        </div>
+        <a>Step 3</a>
+      </li>
+      <li>
+        <div class="icon-circle" id="circle4">
+          <i class="iconfont icon-jianzhuanquan"></i>
+        </div>
+        <a>Step 4</a>
+      </li>
+      <li>
+        <div class="icon-circle" id="circle5">
+          <i class="iconfont icon-jianzhuanquan"></i>
+        </div>
+        <a>Step 5</a>
+      </li>
+      </ul>
+      <!--iput cluster-->
+      <div class="create-cluster-container">
+        <div class="create-cluster-header">
+          <p>Create your cluster</p>
+        </div>
+        <form class="create-cluster-form">
+          <ul class="create-cluster-ul">
+            <li class="create-cluster-li">
+              <label class="create-li-label">Cluster Name</label>
+              <input class="clusterName" type="text" placeholder="Enter cluster name" name="clusterName" required="required" onchange="checkClusterName()"> 
+            </li>
+            <li class="create-cluster-li">
+              <label class="create-li-label">Cluster Description</label>
+              <textarea class="clusterDescription" placeholder="Enter cluster description" name="clusterDesciption" required="required"></textarea>
+            </li>
+          </ul>
+        </form>
+        <input type="button" value="Next" class="next-btn" onclick="clusterSave(this)"/>
+      </div>
+      <!--add jar/image-->
+      <div class="add-jar-container">
+        <div class="create-cluster-header">
+          <p>Add your jar/image</p>
+        </div>
+        <form class="add-jar-form">
+          <ul class="create-cluster-ul list">
+            <li class="create-cluster-li" style="margin-left: 28%;font-size:20px; ">
+              <span><input class="cluster-li-radio" type="radio" name="hubType" value="jar" checked onclick="isJar()"><label>jar</label></span>
+              <span><input class="cluster-li-radio" type="radio" name="hubType" value="image" onclick="isImage()"><label>image</label></span>
+            </li>
+            <li class="create-cluster-li">
+              <label class="create-li-label">IP</label>
+              <input class="IP" type="text" placeholder="Enter IP" name="IP" required="required" value="192.168.0.116" onblur="checkform(this)"> 
+            </li>
+            <li class="create-cluster-li cluster-jar-li">
+              <label class="create-li-label">User Name</label>
+              <input class="userName" type="text" placeholder="Enter user name" name="userName" required="required" value="root" onblur="checkform(this)"> 
+            </li>
+            <li class="create-cluster-li">
+              <label class="create-li-label">Local Hub Path</label>
+              <input class="localHubPath" type="text" placeholder="Enter local hub path" name="localHubPath" required="required" value="/usr/local/MSProject" onblur="checkform(this)"> 
+            </li>
+            <li class="create-cluster-li cluster-jar-li">
+              <label class="create-li-label">User Password</label>
+              <input class="userPwd" type="password" placeholder="Enter user password" name="userPassword" required="required" value="changxin" onblur="checkform(this)"> 
+            </li>
+            <li class="create-cluster-li cluster-jar-li">
+              <label class="create-li-label">Log Path</label>
+              <input class="logPath" type="text" placeholder="Enter log path" name="logPath" required="required" value="/var/sselab/log" onblur="checkform(this)"> 
+            </li>
+          </ul>
+        </form>
+        <div class="show-jar-container">
+          <div id="show-jar-content"></div>
+          <input class="show-jar-button" type="button" value="取消" class="cancel-btn" onclick="cancelJar()"/>
+          <input class="show-jar-button" type="button" value="保存" class="save-btn" onclick="saveJar()"/>
+        </div>
+        <input id="next-button" type="button" value="Next" class="next-btn" onclick="checkhub()"/>
+      </div>
+      <!--input node-->
+      <div class="create-node-container">
+        <div class="create-node-header">
+          <p>Create your node</p>
+        </div>
+        <form class="create-node-form">
+          <label class="create-li-label">IP String</label>
+          <textarea class="IPString" placeholder="Enter IP string,Please separate different IPs with commas(,)" name="IPString" required="required">192.168.0.116,192.168.0.112,192.168.0.113</textarea>
+        </form>
+        <input type="button" value="Next" class="next-btn" onclick="searchNode(this)"/>
+      </div>
+      <!--add ip-->
+      <div class="add-ip-container">
+        <div class="create-node-header">
+          <p>Add your IP</p>
+        </div>
+        <div id="add-ip-list"> 
+        </div>
+        <input  type="button" value="Next" class="next-btn" onclick="addIPFunction(this);showServiceFunction();"/>
+      </div>     
+      <!--create service-->
+      <div class="create-service-container">
+        <div class="create-service-header">
+          <p>Service</p>
+        </div>
+        <div class="service-ip-container">
+          <!--
+          <div class="each-ip-container">
+            <div class="ip-name"><span style="vertical-align: middle; padding-left: 3px;">192.168.0.111</span><img src="images/tianjia.png" style="width:12%; display: inline-block; padding-left:5px; vertical-align: middle;"></div>
+            <div class="ip-service-count">
+              <span>tomcat: <input type="number" min="1" max="10" value="2"/></span>
+              <span>userService: <input type="number" min="1" max="10"/></span>
+              <span>docker: <input type="number" min="1" max="10"/></span>
+            </div>
+          </div>  
+          <div class="each-ip-container">
+            <div class="ip-name"><span style="vertical-align: middle;padding-left: 3px;">192.168.0.112</span><img src="images/tianjia.png" style="width:12%; display: inline-block; padding-left:5px; vertical-align: middle;"></div>
+            <div class="ip-service-count">
+              <span>tomcat: <input type="number" min="1" max="10"/></span>
+              <span>userService: <input type="number" min="1" max="10"/></span>
+            </div>
+          </div>
+          <div class="each-ip-container">
+            <div class="ip-name"><span style="vertical-align: middle;padding-left: 3px;">192.168.0.113</span><img src="images/tianjia.png" style="width:12%; display: inline-block; padding-left:5px; vertical-align: middle;"></div>
+            <div class="ip-service-count">
+              <span>userService: <input type="number" min="1" max="10"/></span>
+              <span>docker: <input type="number" min="1" max="10"/></span>
+            </div>
+          </div>
+          --> 
+        </div>
+        <div class="add-service-container"> 
+          <div class="add-service-content"></div>
+          <input class="add-service-button" type="button" value="取消" onclick="cancelService()"/>
+          <input class="add-service-button" type="button" value="保存" onclick="addService(this)"/>
+        </div> 
+        <input type="button" value="Submit" class="submit-btn" onclick="deployFunction()"/>  
+      </div>
+    </div>
+    <script>
+      
+    </script>
+    <script src="js/create.js"></script>
+  </body>
+</html>

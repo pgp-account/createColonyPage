@@ -1,0 +1,110 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="css/index.css" type="text/css" rel="stylesheet">
+    <link href="css/reset.css" type="text/css" rel="stylesheet">
+    <link href="css/iconfont/iconfont.css" type="text/css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="top-nav">
+        <div class="top-title"><span>xx服务监控管理平台</span></div>
+        <div class="user-info"><img class="user-pic" src="images/userImage.jpg"><span>当前用户</span></div>
+    </div>
+    <div class="bottom-container">
+      <div class="left-side-nav">
+        <div class="nav-logo"><i class="iconfont icon-zhuye" style="font-size: 25px;"></i><span>服务管理</span></div>
+        <div class="nav-logo active"><i class="iconfont icon-jianzhuanquan" style="font-size: 25px;"></i><span>监控统计</span></div>
+        <div class="nav-logo"><i class="iconfont icon-yonghu" style="font-size: 25px;"></i><span>指派管理</span></div>
+      </div>
+      <div class="cluster-list-container">
+        <span>集群列表</span><span>(4)</span>
+        <input type="text" class="search-input" placeholder="请输入名称或IP进行搜索...">
+        <ul class="cluster-container">
+          <li class="cluster-name" onclick="isHidden(this)"><i class="iconfont icon-tubiao-"></i><span>集群一</span></li>
+            <ul class="node-container" style="display:block;">
+              <li class="node-name" onclick="isHidden(this)"><i class="iconfont icon-tubiao-"></i><span>节点1.1</span></li>
+                <ul class="service-container" style="display:block;">
+                  <li class="service-name" onclick="showInstance(this)"><span>服务1.1.1</span></li>
+                  <li class="service-name" onclick="showInstance(this)"><span>服务1.1.2</span></li>
+                </ul>
+              <li class="node-name" onclick="isHidden(this)"><span>节点1.2</span></li>
+              <li class="node-name" onclick="isHidden(this)"><i class="iconfont icon-tubiao-"></i><span>节点1.3</span></li>
+                <ul class="service-container" style="display:block;">
+                  <li class="service-name active1"><span>服务1.3.1</span></li>
+                </ul>
+            </ul>
+          <li class="cluster-name" onclick="isHidden(this)"><i class="iconfont icon-tubiao-"></i><span>集群二</span></li>
+            <ul class="node-container" style="display:block;">
+              <li class="node-name" onclick="isHidden(this)"><i class="iconfont icon-tubiao-"></i><span>节点2.1</span></li>
+                <ul class="service-container" style="display:block;">
+                  <li class="service-name"><span>服务2.1.1</span></li>
+                </ul>
+              <li class="node-name" onclick="isHidden(this)"><i class="iconfont icon-tubiao-"></i><span>节点2.2</span></li>
+                <ul class="service-container" style="display:block;">
+                  <li class="service-name"><span>服务2.2.1</span></li>
+                </ul>
+              <li class="node-name" onclick="isHidden(this)"><i class="iconfont icon-tubiao-"></i><span>节点2.3</span></li>
+                <ul class="service-container" style="display:block;">
+                  <li class="service-name"><span>服务1.3.1</span></li>
+                </ul>
+            </ul>
+          <li class="cluster-name"><span>集群三</span></li>
+        </ul>
+      </div>
+      <div class="right-charts-container">
+        <div class="cluster-charts-header">
+          <i class="iconfont icon-cluster" style="position: relative;font-size: 40px;vertical-align:middle;display: inline-block;"></i>
+          <span class="cluster-name-span">集群一</span>
+          <span class="cluster-status-span">正常状态</span>
+        </div>
+        <div class="cluster-nodeStatus-container">
+          <div class="cluster-nodeStatus-header"><div class="cluster-nodeStatus-title">全部节点状态</div><i class="iconfont icon-guanbi"></i></div>
+          <div id="cluster-nodeStatus-div" style="height:240px;width:99%"></div>
+        </div>
+        <div class="cluster-quality-container">
+          <div class="cluster-quality-header"><div class="cluster-quality-title">集群质量</div><i class="iconfont icon-guanbi"></i></div>
+          <div id="cluster-quality-div" style="height:240px;width:99%"></div>
+        </div>
+        <div class="cluster-instance-container">
+          <table>
+            <thead>
+              <tr>
+                <th>序号</th>
+                <th>服务</th>
+                <th>实例个数</th>
+                <th>实例</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>config</td>
+                <td>3</td>
+                <td><span>实例1.1.1</span><span>实例1.1.2</span><span>实例1.1.3</span></td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>config</td>
+                <td>3</td>
+                <td><span>实例1.1.1</span><span>实例1.1.2</span><span>实例1.1.3</span></td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>config</td>
+                <td>3</td>
+                <td><span>实例1.1.1</span><span>实例1.1.2</span><span>实例1.1.3</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+
+    </div>
+    <!-- 引入 echarts.js -->
+    <script src="js/echarts.common.min.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"> 
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css">
+    <link rel="icon" href="images/favicon.ico" />
+  </head>
+  <body>
+    <div class="login-form-container">
+      <div class="welcome-logo">
+        <i class="iconfont icon-jiankongzhibiao" style="font-size: 200px; font-weight: lighter;"></i>
+      </div>
+      <form class="login-form">
+        <input class="userName" type="text" placeholder="Enter Username" required="required" value="admin">
+        <input class="userPassword" type="password" placeholder="Enter Password" required="required" value="admin">
+        <input type="button" value="Login" class="login-btn" onclick="submitFunction()"/>
+        <div class="forget-pwd"><a>Forget Password?</a></div>
+        <div class="sign-up"><a>New here? Sign up</a></div>
+      </form>
+    </div>
+    <script src="js/login.js"></script>
+  </body>
+</html>
